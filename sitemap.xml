@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://denisandrejew.com/blog/post/args/</loc>
+    <loc>https://blog.denisandrejew.com/post/args/</loc>
     <lastmod>2017-03-01T21:14:46+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://denisandrejew.com/blog/</loc>
-    <lastmod>2017-03-01T21:14:46+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://denisandrejew.com/blog/post/</loc>
+    <loc>https://blog.denisandrejew.com/</loc>
     <lastmod>2017-03-01T21:14:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://denisandrejew.com/blog/tags/rust/</loc>
+    <loc>https://blog.denisandrejew.com/post/</loc>
     <lastmod>2017-03-01T21:14:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://denisandrejew.com/blog/tags/</loc>
+    <loc>https://blog.denisandrejew.com/tags/rust/</loc>
+    <lastmod>2017-03-01T21:14:46+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.denisandrejew.com/tags/</loc>
     <priority>0</priority>
   </url>
   

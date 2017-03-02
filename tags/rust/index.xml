@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rust on Denis Andrejew</title>
-    <link>https://denisandrejew.com/blog/tags/rust/index.xml</link>
+    <link>https://blog.denisandrejew.com/tags/rust/index.xml</link>
     <description>Recent content in Rust on Denis Andrejew</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://denisandrejew.com/blog/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.denisandrejew.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Least-Overhead Modeling &amp; Laziness | Thinking In Rust #1</title>
-      <link>https://denisandrejew.com/blog/post/args/</link>
+      <link>https://blog.denisandrejew.com/post/args/</link>
       <pubDate>Wed, 01 Mar 2017 21:14:46 +0000</pubDate>
       
-      <guid>https://denisandrejew.com/blog/post/args/</guid>
+      <guid>https://blog.denisandrejew.com/post/args/</guid>
       <description>&lt;p&gt;In trying to understand how to start &amp;ldquo;Thinking In Rust&amp;rdquo;, why Rust – the language as well as the stdlib – does some things the way it does, and in order to learn which practices imitate in my own code, this was a question that came up for me:&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Question:&lt;/strong&gt; Why does &lt;a href=&#34;https://doc.rust-lang.org/std/env/fn.args.html&#34;&gt;&lt;code&gt;std::env::args()&lt;/code&gt;&lt;/a&gt; not just return a &lt;code&gt;Vec&amp;lt;String&amp;gt;&lt;/code&gt;, instead of a custom struct that implements &lt;code&gt;trait Iterator&lt;/code&gt;?&lt;/p&gt;
