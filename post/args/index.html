@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="Something">
+    <meta property="og:title" content="Least-Overhead Modeling &amp; Laziness | Thinking In Rust #1">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2017-03-01">
+    
+    <meta property="og:description" content="Something">
+    <meta property="og:url" content="https://denisandrejew.com/blog/post/args/">
+    <meta property="og:site_name" content="Denis Andrejew">
+    
+    <meta property="og:tags" content="rust">
+    
+    <meta name="generator" content="Hugo 0.19" />
+    <title>Least-Overhead Modeling &amp; Laziness | Thinking In Rust #1 &middot; Denis Andrejew</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://denisandrejew.com/blog/css/style.css">
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Denis Andrejew" />
+    
+    
+    <link rel="icon" href="https://denisandrejew.com/blog/favicon.ico" />
+    
+
+    
+    
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://denisandrejew.com/blog/">Denis Andrejew</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://denisandrejew.com/blog/about">About</a></li>
+				
+					<li><a href="https://denisandrejew.com/blog/posts">Blog</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://denisandrejew.com/blog/">Denis Andrejew</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Rustaceous Being</small>
+		
+		
+		
+			<img id="profile-pic" src="https://denisandrejew.com/blog//img/denis.jpg" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+			<a href="https://plus.google.com/&#43;denisandrejew"><i class="fa fa-google-plus fa-2x"></i></a>
+			
+			<a href="https://github.com/seeekr"><i class="fa fa-github fa-2x"></i></a>
+			<a href="mailto:da.colonel@gmail.com"><i class="fa fa-envelope-o fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				<a href="https://denisandrejew.com/blog/about">About</a>
+			
+				<a href="https://denisandrejew.com/blog/posts">Blog</a>
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-8">
+
+<main>
+	<header>
+		<h1>Least-Overhead Modeling &amp; Laziness | Thinking In Rust #1</h1>
+	</header>
+
+	<article>
+		<p>In trying to understand how to start &ldquo;Thinking In Rust&rdquo;, why Rust – the language as well as the stdlib – does some things the way it does, and in order to learn which practices imitate in my own code, this was a question that came up for me:</p>
+
+<p><strong>Question:</strong> Why does <a href="https://doc.rust-lang.org/std/env/fn.args.html"><code>std::env::args()</code></a> not just return a <code>Vec&lt;String&gt;</code>, instead of a custom struct that implements <code>trait Iterator</code>?</p>
+
+<p><strong>Short Answer:</strong> So you don&rsquo;t have to allocate that <code>Vec</code> if you don&rsquo;t want to.</p>
+
+<p><strong>Longer Answer:</strong> The answer to &ldquo;what were the arguments to the currently executing program&rsquo;s invocation?&rdquo; (implemented in <code>std::env::args()</code>) is something that stdlib asks the underlying system for. In there, the answer does not exist in an already-allocated array (in which case rust could have unsafe-ly created a <code>Vec</code> from that memory and returned that), and so Rust will instead give you a custom data structure that represents accessing that answer in the least-overhead way possible. In addition to that, there is more overhead involved since the arguments need to be converted from OsStr, which may or may not be valid UTF8 strings, if arg #5 is <code>--ignore-the-rest-of-the-args</code> then you don&rsquo;t need to continue and thus save some effort.</p>
+
+<p><strong>Learnings:</strong></p>
+
+<ul>
+<li>Don&rsquo;t be afraid to create new custom types in order to more accurately model what is actually present without additional transformation.</li>
+<li>Accurate modeling leads to less overhead.</li>
+<li>Take advantage of laziness that is enabled by functions (and traits) that provide data transformation on-demand; in contrast to pre-transforming all available relevant data and passing it on as a concrete data structure like <code>Vec</code>.</li>
+</ul>
+
+	</article>
+</main>
+
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://denisandrejew.com/blog/" class="btn btn-default"><i class="fa fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'denisandrejew';
+    var disqus_identifier = 'https:\/\/denisandrejew.com\/blog\/post\/args\/';
+    var disqus_title = 'Least-Overhead Modeling \x26 Laziness | Thinking In Rust #1';
+    var disqus_url = 'https:\/\/denisandrejew.com\/blog\/post\/args\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+  
+  <script src="https://denisandrejew.com/blog//js/App.js"></script>
+  
+</body>
+</html>

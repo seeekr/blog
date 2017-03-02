@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Denis Andrejew</title>
+    <link>https://denisandrejew.com/blog/post/index.xml</link>
+    <description>Recent content in Posts on Denis Andrejew</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Mar 2017 21:14:46 +0000</lastBuildDate>
+    <atom:link href="https://denisandrejew.com/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Least-Overhead Modeling &amp; Laziness | Thinking In Rust #1</title>
+      <link>https://denisandrejew.com/blog/post/args/</link>
+      <pubDate>Wed, 01 Mar 2017 21:14:46 +0000</pubDate>
+      
+      <guid>https://denisandrejew.com/blog/post/args/</guid>
+      <description>&lt;p&gt;In trying to understand how to start &amp;ldquo;Thinking In Rust&amp;rdquo;, why Rust – the language as well as the stdlib – does some things the way it does, and in order to learn which practices imitate in my own code, this was a question that came up for me:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question:&lt;/strong&gt; Why does &lt;a href=&#34;https://doc.rust-lang.org/std/env/fn.args.html&#34;&gt;&lt;code&gt;std::env::args()&lt;/code&gt;&lt;/a&gt; not just return a &lt;code&gt;Vec&amp;lt;String&amp;gt;&lt;/code&gt;, instead of a custom struct that implements &lt;code&gt;trait Iterator&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Short Answer:&lt;/strong&gt; So you don&amp;rsquo;t have to allocate that &lt;code&gt;Vec&lt;/code&gt; if you don&amp;rsquo;t want to.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Longer Answer:&lt;/strong&gt; The answer to &amp;ldquo;what were the arguments to the currently executing program&amp;rsquo;s invocation?&amp;rdquo; (implemented in &lt;code&gt;std::env::args()&lt;/code&gt;) is something that stdlib asks the underlying system for. In there, the answer does not exist in an already-allocated array (in which case rust could have unsafe-ly created a &lt;code&gt;Vec&lt;/code&gt; from that memory and returned that), and so Rust will instead give you a custom data structure that represents accessing that answer in the least-overhead way possible. In addition to that, there is more overhead involved since the arguments need to be converted from OsStr, which may or may not be valid UTF8 strings, if arg #5 is &lt;code&gt;--ignore-the-rest-of-the-args&lt;/code&gt; then you don&amp;rsquo;t need to continue and thus save some effort.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Learnings:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Don&amp;rsquo;t be afraid to create new custom types in order to more accurately model what is actually present without additional transformation.&lt;/li&gt;
+&lt;li&gt;Accurate modeling leads to less overhead.&lt;/li&gt;
+&lt;li&gt;Take advantage of laziness that is enabled by functions (and traits) that provide data transformation on-demand; in contrast to pre-transforming all available relevant data and passing it on as a concrete data structure like &lt;code&gt;Vec&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
