@@ -30,6 +30,8 @@
 &lt;li&gt;Accurate modeling leads to less overhead.&lt;/li&gt;
 &lt;li&gt;Take advantage of laziness that is enabled by functions (and traits) that provide data transformation on-demand; in contrast to pre-transforming all available relevant data and passing it on as a concrete data structure like &lt;code&gt;Vec&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you to &lt;code&gt;durka42&lt;/code&gt; on IRC #rust-beginners for providing insights to this!&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
