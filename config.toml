@@ -1,0 +1,40 @@
+languageCode = "en-us"
+baseURL = "https://denisandrejew.com/blog/"
+theme = "hugo-geo"
+
+relativeURLs = false
+title = "Denis Andrejew's Blog"
+disqusShortname = "denisandrejew"
+paginate = 5
+
+[taxonomies]
+	tag = "tags"
+	tutorial = "tutorials"
+
+[params]
+	showglobe = false
+
+	favicon = "favicon.ico"
+
+	#analytics = "code-here"
+
+	github = "https://github.com/seeekr"
+	#twitter = "https://twitter.com/denisandrejew"
+	#linkedin = "https://www.linkedin.com/profile/view?id=339355941"
+	email = "da.colonel@gmail.com"
+	googleplus = "https://plus.google.com/+denisandrejew"
+
+	profilepic = "img/denis.jpg"
+
+	title = "Denis Andrejew"
+	subtitle = "Rustaceous Being"
+
+	header = " "
+
+	[[params.navlinks]]
+	name = "About"
+	url = "about"
+
+	[[params.navlinks]]
+	name = "Blog"
+	url = "posts"
