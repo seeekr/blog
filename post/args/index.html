@@ -3,13 +3,13 @@
 <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="Something">
+    <meta name="description" content="">
     <meta property="og:title" content="Least-Overhead Modeling &amp; Laziness | Thinking In Rust #1">
     
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2017-03-01">
     
-    <meta property="og:description" content="Something">
+    <meta property="og:description" content="">
     <meta property="og:url" content="https://blog.denisandrejew.com/post/args/">
     <meta property="og:site_name" content="Denis Andrejew">
     
@@ -98,7 +98,7 @@
 	</header>
 
 	<article>
-		<p>In trying to understand how to start &ldquo;Thinking In Rust&rdquo;, why Rust – the language as well as the stdlib – does some things the way it does, and in order to learn which practices imitate in my own code, this was a question that came up for me:</p>
+		<p>In trying to understand how to start &ldquo;Thinking In Rust&rdquo;, why Rust – the language as well as the stdlib – does some things the way it does, and in order to learn which practices to imitate in my own code, this was a question that came up for me:</p>
 
 <p><strong>Question:</strong> Why does <a href="https://doc.rust-lang.org/std/env/fn.args.html"><code>std::env::args()</code></a> not just return a <code>Vec&lt;String&gt;</code>, instead of a custom struct that implements <code>trait Iterator</code>?</p>
 
@@ -114,7 +114,7 @@
 <li>Take advantage of laziness that is enabled by functions (and traits) that provide data transformation on-demand; in contrast to pre-transforming all available relevant data and passing it on as a concrete data structure like <code>Vec</code>.</li>
 </ul>
 
-<p><em>Thank you to <code>durka42</code> on IRC #rust-beginners for providing insights to this!</em></p>
+<p><em>Thank you to <code>durka42</code> on the Rust IRC channels for providing insights!</em></p>
 
 	</article>
 </main>
