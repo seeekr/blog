@@ -19,10 +19,10 @@ paginate = 5
 	#analytics = "code-here"
 
 	github = "https://github.com/seeekr"
-	#twitter = "https://twitter.com/denisandrejew"
+	twitter = "https://twitter.com/denisandrejew"
 	#linkedin = "https://www.linkedin.com/profile/view?id=339355941"
-	email = "da.colonel@gmail.com"
-	googleplus = "https://plus.google.com/+denisandrejew"
+	#email = "da.colonel@gmail.com"
+	#googleplus = "https://plus.google.com/+denisandrejew"
 
 	profilepic = "img/denis.jpg"
 
